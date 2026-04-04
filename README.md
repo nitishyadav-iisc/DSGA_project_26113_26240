@@ -1,13 +1,13 @@
 # Property-Based Testing of NetworkX Graph Algorithms
 
-**Course:** Design and Governance of Software Architectures (DSGA)
+**Course:** Data Structure and Graph Algorithms (DSGA)
 
 ## Authors
 
-| Author | SR No. |
-|--------|--------|
-| Aswin S | 26240 |
-| Nitish Kumar Yadav | 26113 |
+| Author             | SR No.                    |
+|--------------------|-------------------------- |
+| Aswin S            | 13-19-01-19-52-25-1-26240 |
+| Nitish Kumar Yadav | 13-19-01-19-52-25-1-26113 |
 
 ---
 
