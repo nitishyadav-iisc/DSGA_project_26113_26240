@@ -1,13 +1,13 @@
 # Property-Based Testing of NetworkX Graph Algorithms
 
-**Course:** Design and Governance of Software Architectures (DSGA)
+**Course:** Data Structure and Graph Analytics (DSGA)
 
 ## Authors
 
-| Author | SR No. |
-|--------|--------|
-| Aswin S | 26240 |
-| Nitish Kumar Yadav | 26113 |
+| Author             | SR No.                    |
+|--------------------|---------------------------|
+| Aswin S            | 13-19-01-19-52-25-1-26240 |
+| Nitish Kumar Yadav | 13-19-01-19-52-25-1-26113 |
 
 ---
 
@@ -63,14 +63,11 @@ Dijkstra's algorithm computes the shortest (minimum total weight) path between n
 
 | # | Property | Description |
 |---|----------|-------------|
-| 1 | **Self-Distance is Zero** | The shortest-path distance from any node to itself is exactly 0. The empty path has cost 0, and with strictly positive edge weights, no cycle can reduce this below zero. |
-| 2 | **Non-Negative Distances** | All single-source shortest-path distances must be ≥ 0 when all edge weights are non-negative. This follows from the fact that Dijkstra's relaxation only adds non-negative weights to non-negative estimates. |
+| 1 | **Path Validity** | The returned path must start at the source, end at the target, and every consecutive pair of nodes along the path must be connected by an edge in the original graph. |
+| 2 | **Self-Distance is Zero** | The shortest-path distance from any node to itself is exactly 0. The empty path has cost 0, and with strictly positive edge weights, no cycle can reduce this below zero. |
 | 3 | **Symmetry (Undirected Graphs)** | In an undirected graph, `dist(u, v) == dist(v, u)`. Every edge is traversable in both directions at equal cost, so the shortest path reversed has the same total weight. |
 | 4 | **Triangle Inequality** | For all nodes *u*, *v*, *w*: `dist(u, v) ≤ dist(u, w) + dist(w, v)`. If this were violated, concatenating the paths *u→w* and *w→v* would yield a cheaper *u→v* path, contradicting optimality. |
-| 5 | **Subpath Optimality (Optimal Substructure)** | Every prefix of a shortest path is itself a shortest path. If the shortest path from *u* to *v* passes through intermediate node *m*, then the sub-path *u→m* must also be optimal. This is the Bellman optimality principle that underpins Dijkstra's correctness. |
-| 6 | **Path Validity** | The returned path must start at the source, end at the target, and every consecutive pair of nodes along the path must be connected by an edge in the original graph. |
-| 7 | **Path–Length Consistency** | The length reported by `nx.dijkstra_path_length` must equal the manually computed sum of edge weights along the path returned by `nx.dijkstra_path`. This ensures the path-finding and distance-calculation logic are synchronized. |
-| 8 | **Edge Existence on Paths** | Every edge traversed by every shortest path returned by `nx.single_source_dijkstra_path` must exist in the original graph, ensuring the algorithm does not invent non-existent transitions. |
+| 5 | **Subpath Optimality (Optimal Substructure)** | Every prefix of a shortest path is itself a shortest path. If the shortest path from *u* to *v* passes through intermediate node *m*, then the sub-path *u→m* must also be optimal. |
 
 ---
 
@@ -86,8 +83,7 @@ pip install networkx hypothesis pytest
 
 ```bash
 # Run all tests in verbose mode
-pytest -v prim_djikstra_property_test.py
-pytest -v test_shortest_path_properties.py
+pytest -v test_hypothesis_networkx_Prim_Dijkstra.py
 ```
 
 ---
