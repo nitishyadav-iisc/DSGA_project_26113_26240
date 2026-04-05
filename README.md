@@ -94,8 +94,8 @@ pytest -v test_hypothesis_networkx_Prim_Dijkstra.py
 DSGA_project_26113_26240/
 ├── README.md                          # This file
 ├── LICENSE                            # Project license
-├── prim_djikstra_property_test.py     # Property tests for Prim's MST & Dijkstra's shortest path
-└── test_shortest_path_properties.py   # Additional property tests for Dijkstra's shortest path
+├── Output.txt                        # Console Output
+├── test_hypothesis_networkx_Prims_Dijkstra.py #Python file for tests
 ```
 
 ---

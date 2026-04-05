@@ -8,12 +8,13 @@
 # Library      : NetworkX 3.2+
 # =============================================================================
 #
-# This module contains 10 property-based tests (5 per algorithm) that verify
+# This module contains 10 property-based tests  which verifies fundamental and
 # the correctness of Prim's MST and Dijkstra's shortest-path implementations
-# in NetworkX.  All graph inputs are generated via Hypothesis composite
+# in NetworkX.  
+# All graph inputs are generated via Hypothesis composite
 # strategies to enable automatic shrinking and full reproducibility.
 #
-# Run:  pytest -v test_hypothesis_networkx_Prim_Dijkstra.py
+# How to Run:  pytest -v test_hypothesis_networkx_Prim_Dijkstra.py
 # =============================================================================
 """
 
@@ -116,7 +117,7 @@ def connected_weighted_graph_with_node_pair(
 
 # =============================================================================
 #  PRIM'S  MINIMUM  SPANNING  TREE
-#  Property-Based Tests  (5 tests)
+#  Property-Based Tests
 # =============================================================================
 
 
@@ -161,7 +162,7 @@ def test_prim_edge_count(G):
     How a failure indicates a bug
     ─────────────────────────────
     • Edge count < n − 1 → the algorithm dropped a vertex, so the result
-      is not spanning.  This indicates a bug in node visitation or
+      is not spanning.  This indicates a bug in node being visited or
       priority-queue processing.
     • Edge count > n − 1 → the algorithm kept a redundant edge that
       creates a cycle.  This indicates a bug in the cut-edge selection
@@ -397,7 +398,7 @@ def test_prim_weight_equals_kruskal(G):
 
 # =============================================================================
 #  DIJKSTRA'S  SHORTEST  PATH
-#  Property-Based Tests  (5 tests)
+#  Property-Based Tests
 # =============================================================================
 
 
