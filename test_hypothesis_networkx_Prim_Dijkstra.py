@@ -167,6 +167,10 @@ def test_prim_edge_count(G):
     • Edge count > n − 1 → the algorithm kept a redundant edge that
       creates a cycle.  This indicates a bug in the cut-edge selection
       logic that should prevent revisiting already-connected components.
+
+    Reference graph
+    ───────────────
+    See ``reference_graphs/test_prim_edge_count.png``
     """
     mst = nx.minimum_spanning_tree(G, algorithm="prim")
     assert mst.number_of_edges() == G.number_of_nodes() - 1, (
@@ -224,6 +228,10 @@ def test_prim_connectivity_and_spanning(G):
     • Vertex sets differ → a vertex was silently dropped (or an extra
       phantom vertex was introduced).  This points to a bookkeeping bug
       in node tracking during tree construction.
+
+    Reference graph
+    ───────────────
+    See ``reference_graphs/test_prim_connectivity_and_spanning.png``
     """
     mst = nx.minimum_spanning_tree(G, algorithm="prim")
     assert nx.is_connected(mst), "MST is not connected — result is a forest"
@@ -276,6 +284,10 @@ def test_prim_subgraph(G):
     data, or using a stale edge reference after graph mutation.  This
     is a critical correctness bug: the MST is no longer realisable
     within the original network.
+
+    Reference graph
+    ───────────────
+    See ``reference_graphs/test_prim_subgraph.png``
     """
     mst = nx.minimum_spanning_tree(G, algorithm="prim")
     for u, v in mst.edges():
@@ -329,6 +341,10 @@ def test_prim_acyclicity(G):
     priority-queue key update — the algorithm failed to recognise that
     both endpoints were already reachable, creating a cycle instead of
     a tree.
+
+    Reference graph
+    ───────────────
+    See ``reference_graphs/test_prim_acyclicity.png``
     """
     mst = nx.minimum_spanning_tree(G, algorithm="prim")
     cycles = nx.cycle_basis(mst)
@@ -384,6 +400,10 @@ def test_prim_weight_equals_kruskal(G):
     likely points to a bug in Prim's implementation (e.g., incorrect
     priority-queue ordering, wrong key-decrease logic, or edge-weight
     corruption during tree construction).
+
+    Reference graph
+    ───────────────
+    See ``reference_graphs/test_prim_weight_equals_kruskal.png``
     """
     prim_mst = nx.minimum_spanning_tree(G, algorithm="prim")
     kruskal_mst = nx.minimum_spanning_tree(G, algorithm="kruskal")
@@ -452,6 +472,10 @@ def test_dijkstra_path_validity(data):
     • A missing edge along the path → the algorithm followed a
       non-existent edge during relaxation, indicating corrupted adjacency
       data or an incorrect predecessor pointer.
+
+    Reference graph
+    ───────────────
+    See ``reference_graphs/test_dijkstra_path_validity.png``
     """
     G, u, v = data
     path = nx.dijkstra_path(G, u, v, weight="weight")
@@ -514,6 +538,10 @@ def test_dijkstra_self_distance_is_zero(G):
     negative-weight cycle that should not exist.  Either case represents
     a fundamental correctness bug in the distance-initialisation or
     relaxation logic.
+
+    Reference graph
+    ───────────────
+    See ``reference_graphs/test_dijkstra_self_distance_is_zero.png``
     """
     for node in G.nodes():
         dist = nx.dijkstra_path_length(G, node, node, weight="weight")
@@ -568,6 +596,10 @@ def test_dijkstra_symmetry(data):
     internally, or by applying direction-sensitive edge-weight logic.
     This is a bug in graph traversal: the algorithm processed edges in
     only one direction when it should have processed both.
+
+    Reference graph
+    ───────────────
+    See ``reference_graphs/test_dijkstra_symmetry.png``
     """
     G, u, v = data
     assume(u != v)
@@ -629,6 +661,10 @@ def test_dijkstra_triangle_inequality(data):
     a corrupted priority queue (processing nodes in the wrong order), or
     premature termination (stopping before all reachable nodes are
     finalised).
+
+    Reference graph
+    ───────────────
+    See ``reference_graphs/test_dijkstra_triangle_inequality.png``
     """
     G, u, v = data
     dist_uv = nx.dijkstra_path_length(G, u, v, weight="weight")
@@ -699,6 +735,10 @@ def test_dijkstra_subpath_optimality(data):
     predecessor-tracking or path-reconstruction logic — the algorithm
     found a shorter route to an intermediate node but failed to
     incorporate it into the final path, or vice versa.
+
+    Reference graph
+    ───────────────
+    See ``reference_graphs/test_dijkstra_subpath_optimality.png``
     """
     G, u, v = data
     assume(u != v)
