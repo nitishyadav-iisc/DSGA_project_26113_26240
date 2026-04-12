@@ -45,11 +45,11 @@ Prim's algorithm computes a Minimum Spanning Tree (MST) of a connected, weighted
 
 | # | Property | Description | Visual Reference |
 |---|----------|-------------|------------------|
-| 1 | **Edge Count (n − 1)** | A spanning tree of a connected graph with *n* nodes must have exactly *n − 1* edges. Fewer edges means the tree is not spanning; more edges means it contains a cycle and is not a tree. | !Edge Count |
-| 2 | **Connectivity & Spanning** | The MST must be connected (`nx.is_connected`) and its vertex set must equal the vertex set of the original graph. This ensures the result truly *spans* the input. | !Connectivity |
-| 3 | **Subgraph Property** | Every edge in the MST must exist in the original graph. Prim's algorithm selects edges exclusively from the input, so the MST must be a subgraph of *G*. | !Subgraph |
-| 4 | **Acyclicity** | The MST must contain no cycles. This is verified by checking that `nx.cycle_basis(mst)` returns an empty list. A tree is, by definition, a connected acyclic graph. | !Acyclicity |
-| 5 | **Weight Optimality (Metamorphic — Prim vs Kruskal)** | The total MST weight computed by Prim's algorithm must equal the total MST weight computed by Kruskal's algorithm on the same graph. Both are provably optimal, and while the specific edge sets may differ when ties exist, the total weight of any MST is unique for a given graph. | !Weight Optimality |
+| 1 | **Edge Count (n − 1)** | A spanning tree of a connected graph with *n* nodes must have exactly *n − 1* edges. Fewer edges means the tree is not spanning; more edges means it contains a cycle and is not a tree. | `prim_edge_count.png` |
+| 2 | **Connectivity & Spanning** | The MST must be connected (`nx.is_connected`) and its vertex set must equal the vertex set of the original graph. This ensures the result truly *spans* the input. | `prim_connectivity.png` |
+| 3 | **Subgraph Property** | Every edge in the MST must exist in the original graph. Prim's algorithm selects edges exclusively from the input, so the MST must be a subgraph of *G*. | `prim_subgraph.png` |
+| 4 | **Acyclicity** | The MST must contain no cycles. This is verified by checking that `nx.cycle_basis(mst)` returns an empty list. A tree is, by definition, a connected acyclic graph. | `prim_acyclicity.png` |
+| 5 | **Weight Optimality (Metamorphic — Prim vs Kruskal)** | The total MST weight computed by Prim's algorithm must equal the total MST weight computed by Kruskal's algorithm on the same graph. Both are provably optimal, and while the specific edge sets may differ when ties exist, the total weight of any MST is unique for a given graph. | `prim_weight_kruskal.png` |
 
 ---
 
@@ -63,11 +63,11 @@ Dijkstra's algorithm computes the shortest (minimum total weight) path between n
 
 | # | Property | Description | Visual Reference |
 |---|----------|-------------|------------------|
-| 1 | **Path Validity** | The returned path must start at the source, end at the target, and every consecutive pair of nodes along the path must be connected by an edge in the original graph. | !Path Validity |
-| 2 | **Self-Distance is Zero** | The shortest-path distance from any node to itself is exactly 0. The empty path has cost 0, and with strictly positive edge weights, no cycle can reduce this below zero. | !Self Distance |
-| 3 | **Symmetry (Undirected Graphs)** | In an undirected graph, `dist(u, v) == dist(v, u)`. Every edge is traversable in both directions at equal cost, so the shortest path reversed has the same total weight. | !Symmetry |
-| 4 | **Triangle Inequality** | For all nodes *u*, *v*, *w*: `dist(u, v) ≤ dist(u, w) + dist(w, v)`. If this were violated, concatenating the paths *u→w* and *w→v* would yield a cheaper *u→v* path, contradicting optimality. | !Triangle Inequality |
-| 5 | **Subpath Optimality (Optimal Substructure)** | Every prefix of a shortest path is itself a shortest path. If the shortest path from *u* to *v* passes through intermediate node *m*, then the sub-path *u→m* must also be optimal. | !Subpath Optimality |
+| 1 | **Path Validity** | The returned path must start at the source, end at the target, and every consecutive pair of nodes along the path must be connected by an edge in the original graph. | `dijkstra_path_validity.png` |
+| 2 | **Self-Distance is Zero** | The shortest-path distance from any node to itself is exactly 0. The empty path has cost 0, and with strictly positive edge weights, no cycle can reduce this below zero. | `dijkstra_self_distance.png` |
+| 3 | **Symmetry (Undirected Graphs)** | In an undirected graph, `dist(u, v) == dist(v, u)`. Every edge is traversable in both directions at equal cost, so the shortest path reversed has the same total weight. | `dijkstra_symmetry.png` |
+| 4 | **Triangle Inequality** | For all nodes *u*, *v*, *w*: `dist(u, v) ≤ dist(u, w) + dist(w, v)`. If this were violated, concatenating the paths *u→w* and *w→v* would yield a cheaper *u→v* path, contradicting optimality. | `dijkstra_triangle_inequality.png` |
+| 5 | **Subpath Optimality (Optimal Substructure)** | Every prefix of a shortest path is itself a shortest path. If the shortest path from *u* to *v* passes through intermediate node *m*, then the sub-path *u→m* must also be optimal. | `dijkstra_subpath_optimality.png` |
 
 ---
 
